@@ -7,6 +7,8 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import "./index.css";
 
+import { studioTheme } from "./ui-components";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
@@ -16,7 +18,7 @@ Amplify.configure(config);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <AmplifyProvider>
+  <AmplifyProvider theme={studioTheme}>
     <App />
   </AmplifyProvider>
 );
