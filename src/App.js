@@ -1,4 +1,5 @@
 import { withAuthenticator } from "@aws-amplify/ui-react";
+import { DataStore } from "aws-amplify";
 import { useState } from "react";
 import {
   CreateNote,
@@ -12,6 +13,11 @@ function App({ signOut }) {
   const [updateOpen, setUpdateOpen] = useState(false);
   const [updateNote, setUpdateNote] = useState(null);
 
+  const handleSignOutClick = async () => {
+    signOut();
+    await DataStore.clear();
+  };
+
   return (
     <>
       <NavBar
@@ -19,7 +25,7 @@ function App({ signOut }) {
         marginBottom={20}
         overrides={{
           Button31632483: { onClick: () => setCreateModalOpen(true) },
-          Button31632487: { onClick: signOut },
+          Button31632487: { onClick: handleSignOutClick },
         }}
       />
       <NoteUICollection
