@@ -1,3 +1,4 @@
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { useState } from "react";
 import {
   CreateNote,
@@ -6,7 +7,7 @@ import {
   UpdateNote,
 } from "./ui-components";
 
-function App() {
+function App({ signOut }) {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
   const [updateNote, setUpdateNote] = useState(null);
@@ -18,6 +19,7 @@ function App() {
         marginBottom={20}
         overrides={{
           Button31632483: { onClick: () => setCreateModalOpen(true) },
+          Button31632487: { onClick: signOut },
         }}
       />
       <NoteUICollection
@@ -64,4 +66,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
