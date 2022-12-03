@@ -1,24 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {
+  CreateNote,
+  NavBar,
+  NoteUICollection,
+  UpdateNote,
+} from "./ui-components";
 
 function App() {
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [updateNote, setUpdateNote] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavBar
+        width={"100%"}
+        marginBottom={20}
+        overrides={{
+          Button31632483: { onClick: () => setCreateModalOpen(true) },
+        }}
+      />
+      <NoteUICollection
+        overrideItems={({ item, index }) => {
+          return {
+            overrides: {
+              Vector31472745: {
+                onClick: () => {
+                  setUpdateOpen(true);
+                  setUpdateNote(item);
+                },
+              },
+            },
+          };
+        }}
+      />
+
+      {createModalOpen && (
+        <div className="modal">
+          <CreateNote
+            overrides={{
+              MyIcon: {
+                as: "button",
+                onClick: () => setCreateModalOpen(false),
+              },
+            }}
+          />
+        </div>
+      )}
+      {updateOpen && (
+        <div className="modal">
+          <UpdateNote
+            note={updateNote}
+            overrides={{
+              MyIcon: {
+                as: "button",
+                onClick: () => setUpdateOpen(false),
+              },
+            }}
+          />
+        </div>
+      )}
+    </>
   );
 }
 
