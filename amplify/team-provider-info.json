@@ -10,6 +10,11 @@
       "StackName": "amplify-notestut-staging-104137",
       "StackId": "arn:aws:cloudformation:us-east-1:918034656377:stack/amplify-notestut-staging-104137/10917490-72f7-11ed-ad41-126d470b727f",
       "AmplifyAppId": "djxofbgcpucte"
+    },
+    "categories": {
+      "auth": {
+        "notestut": {}
+      }
     }
   }
 }
